@@ -1,6 +1,7 @@
 package hellojpa;
 
 import hellojpa.entity.Member;
+import hellojpa.entity.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,11 +24,14 @@ public class Main {
 
         // 에러 났을 경우를 대비해 try-catch로 처리
         try {
+            Team team = new Team();
+            team.setName("3팀");
+            em.persist(team);
+
             // 5. 새로 삽입할 Member 객체 생성
             Member member = new Member();
-            member.setId(101L);
             member.setName("양희찬");
-
+            member.setTeam(team);
             em.persist(member);
 
             // 8. 트랜잭션 커밋
